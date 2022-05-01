@@ -19,16 +19,9 @@ export const phonebookSlice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
-    setItems: (state, action) => {
-      state.contacts.items.push(action.payload);
-    },
     setFilter: (state, action) => {
       state.contacts.filter = action.payload;
     },
-    deleteItems: (state, action) => {
-      const newItems = state.contacts.items.filter(contact => contact.id !== action.payload);
-      state.contacts.items = newItems
-    }
   },
   extraReducers: {
     [fetchContacts.pending]: (state) => {
@@ -45,7 +38,7 @@ export const phonebookSlice = createSlice({
   }
 })
 
-export const { setItems, setFilter, deleteItems } = phonebookSlice.actions;
+export const { setFilter } = phonebookSlice.actions;
 
 export const useGetContacts = store => store.phonebook.contacts.items;
 export const useGetFilter = store => store.phonebook.contacts.filter;
